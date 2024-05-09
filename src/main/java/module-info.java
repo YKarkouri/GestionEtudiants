@@ -5,6 +5,7 @@ module ma.est.gestionetudiants {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
+    requires org.apache.poi.poi;
 
     opens ma.est.gestionetudiants;
     exports ma.est.gestionetudiants;

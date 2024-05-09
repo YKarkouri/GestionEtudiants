@@ -116,6 +116,10 @@ public class Etudiant {
         this.statut = statut;
     }
 
+    public String getFullname() {
+        return prenom + " " + nom;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
