@@ -19,7 +19,7 @@ public class NouveauCoursController {
     private TextField nomTextField;
 
     @FXML
-    private TextArea descriptionTextArea;
+    private TextField descriptionTextField;
 
     @FXML
     private ComboBox<Enseignant> enseignantComboBox;
@@ -39,7 +39,7 @@ public class NouveauCoursController {
     @FXML
     public void handleAddButtonAction() {
         String nom = nomTextField.getText();
-        String description = descriptionTextArea.getText();
+        String description = descriptionTextField.getText();
         Enseignant enseignant = enseignantComboBox.getValue();
         List<Etudiant> etudiantsSelectionnes = etudiantsListView.getSelectionModel().getSelectedItems();
         if (nom != null && !nom.isEmpty() && enseignant != null && !etudiantsSelectionnes.isEmpty()) {
@@ -64,7 +64,7 @@ public class NouveauCoursController {
 
     private void clearInputFields() {
         nomTextField.clear();
-        descriptionTextArea.clear();
+        descriptionTextField.clear();
         enseignantComboBox.setValue(null);
         etudiantsListView.getSelectionModel().clearSelection();
     }

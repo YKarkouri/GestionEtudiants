@@ -4,10 +4,7 @@ import ma.est.gestionetudiants.model.bean.Absence;
 import ma.est.gestionetudiants.model.bean.Etudiant;
 import ma.est.gestionetudiants.model.config.ConnexionBDD;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +14,34 @@ public class AbsenceDAO {
     public static boolean create(Absence absence) {
         Connection connexion = ConnexionBDD.getInstance();
         try {
-            String sql = "INSERT INTO absences (dateTime, etudiant_id) VALUES (?, ?)";
-            PreparedStatement statement = connexion.prepareStatement(sql);
-            statement.setObject(1, absence.getDateTime());
-            statement.setLong(2, absence.getEtudiant().getId());
-            statement.executeUpdate();
-            System.out.println("Absence ajoutée avec succès !");
+            boolean exist = anyMatchByEtudiantAndDateTime(absence.getEtudiant().getId(), absence.getDateTime());
+            if (!exist) {
+                String sql = "INSERT INTO absences (dateTime, etudiant_id) VALUES (?, ?)";
+                PreparedStatement statement = connexion.prepareStatement(sql);
+                statement.setObject(1, absence.getDateTime());
+                statement.setLong(2, absence.getEtudiant().getId());
+                statement.executeUpdate();
+                System.out.println("Absence ajoutée avec succès !");
+            }
             return true;
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'ajout de l'absence : " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean anyMatchByEtudiantAndDateTime(Long etudiantId, LocalDateTime dateTime) {
+        Connection connexion = ConnexionBDD.getInstance();
+        try {
+            String sql = "SELECT * FROM absences WHERE etudiant_id = ? AND dateTime = ?";
+            PreparedStatement statement = connexion.prepareStatement(sql);
+            statement.setLong(1, etudiantId);
+            Timestamp timestamp = Timestamp.valueOf(dateTime);
+            statement.setTimestamp(2, timestamp);
+            ResultSet result = statement.executeQuery();
+            return result.next();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la recherche de l'absence : " + e.getMessage());
             return false;
         }
     }

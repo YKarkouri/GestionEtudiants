@@ -7,16 +7,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ma.est.gestionetudiants.controller.CoursController">
     <top>
-        <HBox spacing="10">
-            <Button text="Accueil" onAction="#handleBackButtonAction"/>
-            <Button text="Ajouter Cours" onAction="#handleAddButtonAction"/>
-            <Button text="Ajouter Note" onAction="#handleAddNoteButtonAction"/>
-            <Button text="Exporter Notes" onAction="#handleExportNotesButtonAction"/>
-        </HBox>
+        <StackPane>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Accueil" onAction="#handleBackButtonAction"/>
+                <Button text="Ajouter Cours" onAction="#handleAddButtonAction"/>
+                <Button text="Ajouter Note" onAction="#handleAddNoteButtonAction"/>
+                <Button text="Exporter Notes" onAction="#handleExportNotesButtonAction"/>
+            </HBox>
+        </StackPane>
     </top>
     <center>
         <TableView fx:id="coursTableView" prefWidth="600">
