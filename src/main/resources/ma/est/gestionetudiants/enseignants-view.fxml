@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ma.est.gestionetudiants.controller.EnseignantsController">
+    <top>
+        <HBox spacing="10">
+            <Button text="Accueil" onAction="#returnAccueilAction"/>
+            <Button text="Ajouter" onAction="#createNewEnseignantAction"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="enseignantsTable">
+            <columns>
+                <TableColumn text="Nom" fx:id="nomColumn" prefWidth="150"/>
+                <TableColumn text="Prénom" fx:id="prenomColumn" prefWidth="150"/>
+                <TableColumn text="Email" fx:id="emailColumn" prefWidth="150"/>
+                <TableColumn text="Cin" fx:id="cinColumn" prefWidth="150"/>
+                <TableColumn text="Téléphone" fx:id="telephoneColumn" prefWidth="150"/>
+                <TableColumn text="Adresse" fx:id="adresseColumn" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

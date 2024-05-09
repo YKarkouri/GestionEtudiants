@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ma.est.gestionetudiants.controller.AbsenceController">
+    <top>
+        <HBox spacing="10">
+            <Button text="Accueil" onAction="#handleBackButtonAction"/>
+            <Button text="Ajouter" onAction="#handleAddButtonAction"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="absencesTable">
+            <columns>
+                <TableColumn text="Nom" fx:id="nomColumn" prefWidth="150"/>
+                <TableColumn text="Prénom" fx:id="prenomColumn" prefWidth="150"/>
+                <TableColumn text="CNE" fx:id="cneColumn" prefWidth="150"/>
+                <TableColumn text="Statut" fx:id="statutColumn" prefWidth="200"/>
+                <TableColumn text="Date/Time" fx:id="dateTimeColumn" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
